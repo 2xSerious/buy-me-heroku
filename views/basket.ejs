@@ -1,0 +1,9 @@
+<div class="cart__container">
+  <% if (data) { data.cart.forEach(function(element){ %>
+  <div><%=element.name%></div>
+  <div><%=element.id%></div>
+  <div><%=element.color%></div>
+  <div><%=element.size%></div>
+  <div><%=element.price%></div>
+  <% }) } %>
+</div>

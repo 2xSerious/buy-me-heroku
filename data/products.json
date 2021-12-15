@@ -1,0 +1,86 @@
+{
+    "products": [
+        {   
+            "id": "2009901",
+            "name": "T-Shirt",
+            "color": "White",
+            "sizes": [
+                {
+                    "name": "XS",
+                    "qty": 10
+                },
+                {
+                    "name": "S",
+                    "qty": 4
+                },
+                {
+                    "name": "M",
+                    "qty": 0
+                },
+                {
+                    "name": "L",
+                    "qty": 15
+                },
+                {
+                    "name": "XL",
+                    "qty": 0
+                }
+            ]
+        },
+        {   
+            "id": "2009902",
+            "name": "T-Shirt",
+            "color": "Black",
+            "sizes": [
+                {
+                    "name": "XS",
+                    "qty": 0
+                },
+                {
+                    "name": "S",
+                    "qty": 8
+                },
+                {
+                    "name": "M",
+                    "qty": 20
+                },
+                {
+                    "name": "L",
+                    "qty": 1
+                },
+                {
+                    "name": "XL",
+                    "qty": 5
+                }
+            ]
+        },
+        {   
+            "id": "2009903",
+            "name": "T-Shirt",
+            "color": "Red",
+            "sizes": [
+                {
+                    "name": "XS",
+                    "qty": 2
+                },
+                {
+                    "name": "S",
+                    "qty": 18
+                },
+                {
+                    "name": "M",
+                    "qty": 0
+                },
+                {
+                    "name": "L",
+                    "qty": 1
+                },
+                {
+                    "name": "XL",
+                    "qty": 0
+                }
+            ]
+        }
+        
+    ]
+}
