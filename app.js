@@ -12,7 +12,7 @@ app.use(
     extended: true,
   })
 );
-app.use(express.static(__dirname + "/libs"));
+app.use(express.static(__dirname + "/"));
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
