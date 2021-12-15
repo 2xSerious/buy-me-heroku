@@ -28,6 +28,6 @@ app.use("/cart", require("./routes/cart"));
 //   res.render("index");
 // });
 
-app.listen(process.env.PORT, () => {
-  console.log("Server is listening at port: " + process.env.PORT);
+app.listen(process.env.PORT || 3000, () => {
+  console.log("Server is listening at port: ", process.env.PORT);
 });
