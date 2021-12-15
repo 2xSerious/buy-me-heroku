@@ -152,8 +152,10 @@ function updateBasket(items) {
     $(".cart__dropdown").empty();
     items.forEach((element) => {
       $(".cart__dropdown").append(`
-            <div class="cart__item d-flex gap-2 p-2 align-items-center" data-id="${element.color}-${element.size}">
-                <img class="cart__item--img" src="/libs/images/gallery/t-shirt-1-${element.color}.jpeg" />
+            <div class="cart__item d-flex gap-2 p-2 align-items-center" data-id="${
+              element.color
+            }-${element.size}">
+                <img class="cart__item--img" src="/libs/images/gallery/t-shirt-1-${element.color.toLowerCase()}.jpeg" />
                 <div>${element.name}</div>
                 <div>${element.color}</div>
                 <div>${element.size}</div>
