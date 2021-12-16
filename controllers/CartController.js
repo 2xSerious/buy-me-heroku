@@ -1,3 +1,9 @@
+/**
+ * Update session basket
+ * Returns updated session basket
+ * @param {Object} req
+ * @param {Object} res
+ */
 exports.addToCart = (req, res) => {
   if (!req.session.basket) {
     req.session.basket = req.body.item;
@@ -10,6 +16,11 @@ exports.addToCart = (req, res) => {
   }
 };
 
+/**
+ * Returns items from the current session
+ * @param {Object} req
+ * @param {Object} res
+ */
 exports.getItems = (req, res) => {
   if (req.session.basket) {
     res.send(req.session.basket);
@@ -18,6 +29,12 @@ exports.getItems = (req, res) => {
   }
 };
 
+/**
+ * Updates items in current session
+ * Returns updated session.basket
+ * @param {Object} req
+ * @param {Objecy} res
+ */
 exports.updateItems = (req, res) => {
   req.session.basket = req.body.item;
   res.send(req.session.basket);

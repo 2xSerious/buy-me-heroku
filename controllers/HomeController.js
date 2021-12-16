@@ -3,6 +3,11 @@ const fs = require("fs");
 const jsonString = fs.readFileSync("./data/products.json");
 const { products } = JSON.parse(jsonString);
 
+/**
+ * Render html and sends it to browser
+ * @param {Object} req
+ * @param {Object} res
+ */
 exports.getHome = (req, res) => {
   res.render("index", {
     product_id: products[0].id,
@@ -11,6 +16,11 @@ exports.getHome = (req, res) => {
     product_sizes: products[0].sizes,
   });
 };
+/**
+ * Returns product color
+ * @param {Object} req
+ * @param {Object} res
+ */
 exports.getColor = (req, res) => {
   const index = products.findIndex(
     (item) => item.color.toLowerCase() === req.params.color

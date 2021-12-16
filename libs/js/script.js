@@ -1,48 +1,87 @@
-var current_sizes = [];
-var basket = [];
-var color = "white";
-$(function () {
-  getColor("white");
-  getItems();
+/**
+ * @file /script.js
+ * @author Teodor Krushkov
+ * @description File that contains all functions and event listeners for the front-end.
+ */
 
+/** Array of product sizes
+ * @type {Array}
+ */
+var current_sizes = [];
+/** Array of product objects
+ * @type {Array}
+ */
+var basket = [];
+/** Default color value
+ * @type {string}
+ */
+var color = "white";
+
+//Document ready
+$(function () {
+  getColor("white"); // Callback function on load
+  getItems(); // HTTP request to server, update HTML basket
+
+  /** Toggle shopping cart container
+   * @type {EventListener}
+   */
   $(".header__basket--logo").on("click", function () {
     $(".cart__dropdown").toggleClass("display");
   });
+  /** Add item to the basket and to the server session
+   * @type {EventListener}
+   */
   $("#add").on("click", function () {
+    /** @constant <string> */
     const name = "T-Shirt";
+    /** @constant <string> */
     const color = $(".product__color--text").text();
+    /** @constant <string> */
     const size = $(".form-select").val();
+    /** @constant <string> */
     const id = $(".product__id span").text();
 
-    let data = [{ name: name, id: id, color: color, size: size, price: 40 }];
+    /** @constant <object> */
+    const data = [{ name: name, id: id, color: color, size: size, price: 40 }];
 
+    // If size not selected, will not continue and not fire basker animation
+    if (!data[0].size) {
+      return;
+    }
+    // Trigger basket animation
     $(".header__basket--logo").addClass("animate");
     setTimeout(function () {
       $(".header__basket--logo").removeClass("animate");
     }, 2000);
-    if (!data[0].size) {
-      return;
-    }
 
+    // if data array is not empty will call addToCart
     if (data.length > 0) {
       addToCart(data);
     }
   });
 
+  /** Event lister that trigger product color change
+   * @type {EventListener}
+   */
   $(".product__color").on("click", "*", function () {
-    console.log(this.className);
     if (this.className !== undefined) {
-      color = this.className;
+      color = this.className; // sets global variable color to clicked element color class ex: "white, black, red"
     }
     getColor(color);
   });
 
+  /** Shows the selected image
+   * @type {EventListener}
+   */
   $(".tumbnails").on("click", "*", function () {
     $(".img-current").attr("src", $(this).attr("src"));
     $(".thumb-img").removeClass("selected");
     $(this).addClass("selected");
   });
 
+  /** Changes image, when arrows are used
+   * @type {EventListener}
+   */
   $(".prev, .next").on("click", function () {
     console.log("test");
     if ($(this).hasClass("prev")) {
@@ -70,7 +109,9 @@ $(function () {
       }
     }
   });
-
+  /** Checking quantity based on selected size and informs the user.
+   * @type {EventListener}
+   */
   $(".form-select").on("change", function () {
     const size = $(this).val();
     const current = current_sizes.find((e) => e.name === size);
@@ -89,7 +130,10 @@ $(function () {
     }
   });
 });
-
+/**
+ * Updates the product images and content.
+ * @param {String} color - name of the color
+ */
 function getColor(color) {
   const current_img = $(".product__color--text").text();
   $.get(`/${color}`, function (data) {
@@ -110,7 +154,10 @@ function getColor(color) {
     }
   });
 }
-
+/**
+ *
+ * @param {*} item - add item in basket
+ */
 function addToCart(item) {
   if (item) {
     $.ajax({
@@ -129,7 +176,10 @@ function addToCart(item) {
     });
   }
 }
-
+/**Updates basket and the items from the basket
+ * @async
+ * @function
+ */
 function getItems() {
   $.ajax({
     url: "/cart/items",
@@ -146,6 +196,11 @@ function getItems() {
   });
 }
 
+/**
+ * Update the HTML basket.
+ * @param {Array} items - array of items
+ *
+ */
 function updateBasket(items) {
   $(".cart__dropdown").empty();
   if (items.length > 0) {
@@ -174,6 +229,11 @@ function updateBasket(items) {
   }
 }
 
+/**
+ * Remove item from basket
+ * @param {Element} e - dom element
+ */
+
 function removeItem(e) {
   console.log(basket);
   console.log($(e).parent());
@@ -184,6 +244,12 @@ function removeItem(e) {
   let filtered = basket.filter((el) => el.color !== color && el.size !== size);
   updateSession(filtered);
 }
+
+/**
+ * Updates basket stored in session
+ * @async
+ * @param {Array} item - array of items
+ */
 
 function updateSession(item) {
   if (item) {
