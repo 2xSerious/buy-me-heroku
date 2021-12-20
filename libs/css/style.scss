@@ -1,23 +1,26 @@
-@import url('https://fonts.googleapis.com/css2?family=Comforter+Brush&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Comforter+Brush&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap");
 
-$color-graphite: #686868;
-
+$color-graphite: #22223b;
+$color-header: #f5f5f5;
+$color-btn: #4a4e69;
 html {
     box-sizing: border-box;
-    font-family: 'Open Sans';
-  }
-*, *:before, *:after {
-    box-sizing:border-box;
-  }
+    font-family: "Open Sans";
+}
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
 * {
     padding: 0;
     margin: 0;
 }
 
-
 .header {
     width: 100%;
+    background-color: $color-header;
     &__basket {
         position: relative;
         &--logo {
@@ -38,12 +41,12 @@ html {
             width: 12px;
             height: 12px;
             border-radius: 50%;
-            background-color: red;
+            background-color: #f05454;
             color: white;
             z-index: 1;
             font-size: 7pt;
             font-weight: bold;
-            text-align: center; 
+            text-align: center;
         }
         .show {
             display: inline-block;
@@ -54,23 +57,23 @@ html {
             top: 50px;
             flex-direction: column;
             min-width: 260px;
-            -webkit-box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.39); 
-            box-shadow: 5px 5px 15px 5px rgba(0,0,0,0.39);
+            -webkit-box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.39);
+            box-shadow: 5px 5px 15px 5px rgba(0, 0, 0, 0.39);
             z-index: 3;
             animation: drop-down 0.5s linear;
             overflow: hidden;
             @keyframes drop-down {
                 from {
                     opacity: 0;
-                } to {
+                }
+                to {
                     opacity: 1;
                 }
-                
             }
-            
+
             .cart__item {
                 position: relative;
-                
+
                 &--delete {
                     position: absolute;
                     right: 30px;
@@ -87,9 +90,9 @@ html {
             }
         }
         .display {
-                display: block;
+            display: block;
         }
-        
+
         .animate {
             animation: shake 1s ease-in-out 1;
         }
@@ -98,151 +101,158 @@ html {
             16% {
                 transform: translateY(8px);
             }
-        
+
             33% {
                 transform: translateY(-6px);
             }
-        
+
             49% {
                 transform: translateY(4px);
             }
-        
+
             66% {
                 transform: translateY(-2px);
             }
-        
+
             83% {
                 transform: translateY(1px);
             }
-        
+
             100% {
                 transform: translateY(0);
             }
         }
     }
-        
+
     &__logo {
         text-align: center;
         text-decoration: none;
         color: $color-graphite;
-        font-family: 'Comforter Brush', cursive;
+        font-family: "Comforter Brush", cursive;
         font-size: xx-large;
-        
+
         a {
             text-decoration: none;
             color: $color-graphite;
             &:hover {
-                color:$color-graphite
+                color: $color-graphite;
             }
         }
     }
 }
-       .carousel {
-        
-           a{
-               cursor: pointer;
-               font-weight: bold;
-               font-size: 40px;
-               color: $color-graphite;
-               padding:0 5px ;
-           }
-           
-           .img-current {
-               width: 100%;
 
-           }
+.carousel {
+    padding: 10px 0;
+    border-radius: 5px;
+    a {
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 40px;
+        color: $color-graphite;
+        padding: 0 5px;
+    }
 
-           .div-next, .div-prev {
-               align-items: center;
-               a {
-                   text-decoration: none;
-                   color: $color-graphite;
-                   &:hover {
-                       opacity: 0.8;
-                   }
-               }
-           }
-          
-           .tumbnails {
-               height: 80px;
-               > img {
-                   cursor: pointer;
-                   max-height: 100%;
-               }
-               .selected {
-                border-bottom: 3px solid $color-graphite;
-                border-top: 3px solid $color-graphite ;
-                border-radius: 10% ;
-                opacity: 1;
-                animation: selectThumb 0.5s;
-                @keyframes selectThumb {
-                    from {
-                        opacity: 0;
-                    }
-                    to {
-                        opacity: 1;
-                    }
+    .img-current {
+        width: 100%;
+    }
+
+    .div-next,
+    .div-prev {
+        align-items: center;
+        a {
+            text-decoration: none;
+            color: $color-graphite;
+            &:hover {
+                opacity: 0.8;
+            }
+        }
+    }
+
+    .tumbnails {
+        height: 80px;
+        > img {
+            cursor: pointer;
+            max-height: 100%;
+        }
+        .selected {
+            border-bottom: 3px solid $color-graphite;
+            border-top: 3px solid $color-graphite;
+            border-radius: 10%;
+            opacity: 1;
+            animation: selectThumb 0.5s;
+            @keyframes selectThumb {
+                from {
+                    opacity: 0;
                 }
-               }
-           }
-       }
-       
-       .product {
-           &__color {
-            .white, .black, .red {
-             cursor: pointer;
-             width: 30px;
-             height:30px;
-             border: 3px solid $color-graphite;
-             border-radius: 50%;
+                to {
+                    opacity: 1;
+                }
             }
-            .white {
-                background-color: white;
-            }
-            .black {
-                background-color: black;
-            }
-            .red {
-                background-color: darkred;
-            }
-            .selected-color {
-                opacity: 0.5;
-            }
-          }
-          &__price {
-            font-size: 16pt;
-            margin-top: 40px;
-          }
-          &__availability {
-            font-size: 9pt;
-            color: orange;
-          }
-          &__select {
-              width: 50%;
-          }
-          
-    #add:disabled {
-        background-color: grey;
+        }
     }
 }
 
-    .footer__links {
-        width: 100%;
-        height: 100px;
-        gap:10px;
-        background-color: $color-graphite;
-        .line {
-            width: .02rem;
-            height: 1.5rem;
+.product {
+    &__color {
+        .white,
+        .black,
+        .red {
+            cursor: pointer;
+            width: 30px;
+            height: 30px;
+            border: 3px solid $color-graphite;
+            border-radius: 50%;
+        }
+        .white {
+            background-color: white;
+        }
+        .black {
             background-color: black;
         }
-    }
-    .footer-links{
-        text-decoration: none;
-        color: white;
-        &:hover {
-            color: white;
-            opacity: 0.8;
+        .red {
+            background-color: darkred;
+        }
+        .selected-color {
+            opacity: 0.5;
         }
     }
+    &__price {
+        font-size: 16pt;
+        margin-top: 40px;
+    }
+    &__availability {
+        font-size: 9pt;
+        color: orange;
+    }
+    &__select {
+        width: 100%;
+    }
 
+    #add {
+        background-color: $color-btn;
+        color: white;
+        &:disabled {
+            background-color: grey;
+        }
+    }
+}
+
+.footer__links {
+    width: 100%;
+    height: 100px;
+    gap: 10px;
+    background-color: $color-header;
+    .line {
+        width: 0.02rem;
+        height: 1.5rem;
+        background-color: black;
+    }
+}
+.footer-links {
+    text-decoration: none;
+    color: black;
+    &:hover {
+        color: black;
+        opacity: 0.7;
+    }
+}

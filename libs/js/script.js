@@ -25,8 +25,8 @@ $(function () {
   /** Toggle shopping cart container
    * @type {EventListener}
    */
-  $(".header__basket--logo").on("click", function () {
-    $(".cart__dropdown").toggleClass("display");
+  $(".basket-js").on("click", ".basket-logo-js", function () {
+    $(".dropdown-js").toggleClass("display");
   });
   /** Add item to the basket and to the server session
    * @type {EventListener}
@@ -35,11 +35,11 @@ $(function () {
     /** @constant <string> */
     const name = "T-Shirt";
     /** @constant <string> */
-    const color = $(".product__color--text").text();
+    const color = $(".product-color-js").text();
     /** @constant <string> */
     const size = $(".form-select").val();
     /** @constant <string> */
-    const id = $(".product__id span").text();
+    const id = $(".product-id-js").text();
 
     /** @constant <object> */
     const data = [{ name: name, id: id, color: color, size: size, price: 40 }];
@@ -49,9 +49,9 @@ $(function () {
       return;
     }
     // Trigger basket animation
-    $(".header__basket--logo").addClass("animate");
+    $(".basket-logo-js").addClass("animate");
     setTimeout(function () {
-      $(".header__basket--logo").removeClass("animate");
+      $(".basket-logo-js").removeClass("animate");
     }, 2000);
 
     // if data array is not empty will call addToCart
@@ -63,7 +63,7 @@ $(function () {
   /** Event lister that trigger product color change
    * @type {EventListener}
    */
-  $(".product__color").on("click", "*", function () {
+  $(".product-colors-js").on("click", "*", function () {
     if (this.className !== undefined) {
       color = this.className; // sets global variable color to clicked element color class ex: "white, black, red"
     }
@@ -73,59 +73,60 @@ $(function () {
   /** Shows the selected image
    * @type {EventListener}
    */
-  $(".tumbnails").on("click", "*", function () {
-    $(".img-current").attr("src", $(this).attr("src"));
-    $(".thumb-img").removeClass("selected");
+  $(".tumbnails-js").on("click", "*", function () {
+    $(".current-img-js").attr("src", $(this).attr("src"));
+    $(".thumb-img-js").removeClass("selected");
     $(this).addClass("selected");
   });
 
   /** Changes image, when arrows are used
    * @type {EventListener}
    */
-  $(".prev, .next").on("click", function () {
-    console.log("test");
+  $(".div-prev-js, .div-next").on("click", "*", function () {
     if ($(this).hasClass("prev")) {
       const prev = $(".selected").prev();
       if (prev.length < 1) {
-        $(".thumb-img").removeClass("selected");
-        $(".thumb-img").last().addClass("selected");
-        $(".img-current").attr("src", $(".thumb-img").last().attr("src"));
+        $(".thumb-img-js").removeClass("selected");
+        $(".thumb-img-js").last().addClass("selected");
+        $(".current-img-js").attr("src", $(".thumb-img-js").last().attr("src"));
       } else {
         $(".thumb-img").removeClass("selected");
         prev.addClass("selected");
         $(".img-current").attr("src", prev.attr("src"));
       }
     } else {
-      console.log();
       const next = $(".selected").next();
       if (next.length < 1) {
-        $(".thumb-img").removeClass("selected");
-        $(".thumb-img").first().addClass("selected");
-        $(".img-current").attr("src", $(".thumb-img").first().attr("src"));
+        $(".thumb-img-js").removeClass("selected");
+        $(".thumb-img-js").first().addClass("selected");
+        $(".current-img-js").attr(
+          "src",
+          $(".thumb-img-js").first().attr("src")
+        );
       } else {
-        $(".thumb-img").removeClass("selected");
+        $(".thumb-img-js").removeClass("selected");
         next.addClass("selected");
-        $(".img-current").attr("src", next.attr("src"));
+        $(".current-img-js").attr("src", next.attr("src"));
       }
     }
   });
   /** Checking quantity based on selected size and informs the user.
    * @type {EventListener}
    */
-  $(".form-select").on("change", function () {
+  $(".select-js").on("change", ".form-select-js", function () {
     const size = $(this).val();
     const current = current_sizes.find((e) => e.name === size);
     console.log(current_sizes);
     if (current.qty > 0 && current.qty < 5) {
-      $(".product__availability")
+      $(".product-availability-js")
         .children()
-        .text(`low Only ${current.qty} left!`);
+        .text(`Low Only ${current.qty} left!`);
       $("#add").attr("disabled", false);
     } else if (current.qty < 1) {
-      $(".product__availability").children().text(`Not Available`);
+      $(".product-availability-js").children().text(`Not Available`);
       $("#add").attr("disabled", true);
     } else {
-      $(".product__availability").children().text(`Available`);
+      $(".product-availability-js").children().text(`Available`);
       $("#add").attr("disabled", false);
     }
   });
@@ -135,18 +136,18 @@ $(function () {
  * @param {String} color - name of the color
  */
 function getColor(color) {
-  const current_img = $(".product__color--text").text();
+  const current_img = $(".product-color-js").text();
   $.get(`/${color}`, function (data) {
     console.log(data);
-    $(".form-select").val("");
-    $(".product__availability p").text("");
-    $(".product__color").children().removeClass("selected-color");
-    $(".product__color--text").text(data.color);
-    $(".product__id span").text(data.id);
+    $(".form-select-js").val("");
+    $(".product-availability-js").children().text("");
+    $(".product-colors-js").children().removeClass("selected-color");
+    $(".product-color-js").text(data.color);
+    $(".product-id-js").text(data.id);
     $(`.${data.color.toLowerCase()}`).addClass("selected-color");
     current_sizes = data.sizes;
     if (current_img !== data.color) {
-      $(".img-current, .thumb-img").each(function () {
+      $(".current-img-js, .thumb-img-js").each(function () {
         let src = $(this).attr("src");
         let newsrc = src.replace(current_img, data.color);
         $(this).attr("src", newsrc);
@@ -168,8 +169,8 @@ function addToCart(item) {
       success: function (res) {
         basket = res;
         if (basket.length > 0) {
-          $(".notification").addClass("show");
-          $(".notification").text(basket.length);
+          $(".notification-js").addClass("show");
+          $(".notification-js").text(basket.length);
         }
         updateBasket(res);
       },
@@ -188,8 +189,8 @@ function getItems() {
     success: function (res) {
       basket = res;
       if (basket.length > 0) {
-        $(".notification").addClass("show");
-        $(".notification").text(basket.length);
+        $(".notification-js").addClass("show");
+        $(".notification-js").text(basket.length);
       }
       updateBasket(res);
     },
@@ -202,11 +203,11 @@ function getItems() {
  *
  */
 function updateBasket(items) {
-  $(".cart__dropdown").empty();
+  $(".dropdown-js").empty();
   if (items.length > 0) {
-    $(".cart__dropdown").empty();
+    $(".dropdown-js").empty();
     items.forEach((element) => {
-      $(".cart__dropdown").append(`
+      $(".dropdown-js").append(`
             <div class="cart__item d-flex gap-2 p-2 align-items-center" data-id="${
               element.color
             }-${element.size}">
@@ -260,9 +261,9 @@ function updateSession(item) {
       success: function (res) {
         basket = res;
         if (basket.length > 0) {
-          $(".notification").text(basket.length);
+          $(".notification-js").text(basket.length);
         } else {
-          $(".notification").removeClass("show");
+          $(".notification-js").removeClass("show");
         }
         updateBasket(res);
       },

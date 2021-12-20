@@ -33,7 +33,7 @@ exports.getItems = (req, res) => {
  * Updates items in current session
  * Returns updated session.basket
  * @param {Object} req
- * @param {Objecy} res
+ * @param {Object} res
  */
 exports.updateItems = (req, res) => {
   req.session.basket = req.body.item;

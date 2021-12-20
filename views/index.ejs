@@ -15,10 +15,10 @@
   </head>
   <body class="d-flex flex-column min-vh-100">
     <div class="header row gx-0 px-md-5 px-4 py-2" id="add-to-cart">
-      <div class="header__basket col d-flex justify-content-start">
-        <div class="notification">1</div>
-        <div class="header__basket--logo"></div>
-        <div class="cart__dropdown"></div>
+      <div class="header__basket col d-flex justify-content-start basket-js">
+        <div class="notification notification-js">1</div>
+        <div class="header__basket--logo basket-logo-js"></div>
+        <div class="cart__dropdown dropdown-js"></div>
       </div>
 
       <div class="header__logo col">
@@ -41,10 +41,14 @@
           <div class="product__name px-5" id="t-shirt">
             <h3>
               <%= product_name%>
-              <span class="product__color--text"><%=product_color %></span>
+              <span class="product__color--text product-color-js"
+                ><%=product_color %></span
+              >
             </h3>
           </div>
-          <div class="product__id px-5">ID: <span><%=product_id %></span></div>
+          <div class="product__id px-5">
+            ID: <span class="product-id-js"><%=product_id %></span>
+          </div>
         </div>
 
         <div
@@ -59,39 +63,48 @@
             m-auto
           "
         >
-          <div class="container__left col d-flex justify-content-center">
+          <div class="container__left col d-flex justify-content-center mt-5">
             <div class="carousel">
               <div class="row row-cols-3 g-0">
-                <div class="div-prev col d-flex justify-content-center">
+                <div class="div-prev col d-flex justify-content-center div-prev-js">
                   <a class="prev">&#10094;</a>
                 </div>
-                <div class="col m-auto">
+                <div class="col m-auto "">
                   <img
-                    class="img-current"
+                    class="img-current current-img-js""
                     src="https://ik.imagekit.io/hjw31phthq4/e-shop/images/gallery/t-shirt-1-<%=product_color%>.jpeg"
                     alt="t-shirt"
                   />
                 </div>
 
-                <div class="div-next col d-flex justify-content-center">
+                <div class="div-next col d-flex justify-content-center div-next-js">
                   <a class="next">&#10095;</a>
                 </div>
               </div>
-              <div class="tumbnails d-flex justify-content-center gap-3 mt-2">
+              <div
+                class="
+                  tumbnails
+                  d-flex
+                  justify-content-center
+                  gap-3
+                  mt-2
+                  tumbnails-js
+                "
+              >
                 <img
-                  class="thumb-img selected"
+                  class="thumb-img thumb-img-js selected "
                   src="https://ik.imagekit.io/hjw31phthq4/e-shop/images/gallery/t-shirt-1-<%=product_color%>.jpeg"
                   alt="t-shirt"
                   ;
                 />
                 <img
-                  class="thumb-img"
+                  class="thumb-img thumb-img-js"
                   src="https://ik.imagekit.io/hjw31phthq4/e-shop/images/gallery/t-shirt-2-<%=product_color%>.jpeg"
                   alt="t-shirt"
                   ;
                 />
                 <img
-                  class="thumb-img"
+                  class="thumb-img thumb-img-js"
                   src="https://ik.imagekit.io/hjw31phthq4/e-shop/images/gallery/t-shirt-3-<%=product_color%>.jpeg"
                   alt="t-shirt"
                   ;
@@ -107,12 +120,14 @@
               d-flex
               flex-column
               justify-content-center
+              align-items-md-start
+              align-items-center
             "
           >
             <div class="product__size my-5">
               <h4>Size: True to fit</h4>
-              <div class="product__select">
-                <select class="form-select" id="select-size ">
+              <div class="product__select select-js">
+                <select class="form-select form-select-js" id="select-size ">
                   <option value="" selected>Select Size</option>
                   <% product_sizes.forEach(function(size) { %>
                   <option value="<%=size.name%>"><%=size.name%></option>
@@ -120,7 +135,15 @@
                 </select>
               </div>
             </div>
-            <div class="product__color d-flex gap-1 selected-color">
+            <div
+              class="
+                product__color
+                d-flex
+                gap-1
+                selected-color
+                product-colors-js
+              "
+            >
               <div class="white"></div>
               <div class="black"></div>
               <div class="red"></div>
@@ -128,11 +151,11 @@
             <div class="product__price">
               <h5>Price: <span class="cost">$40</span></h5>
             </div>
-            <div class="product__availability">
+            <div class="product__availability product-availability-js">
               <p></p>
             </div>
             <div>
-              <button id="add" class="btn btn-dark" onclick="addToCart()">
+              <button id="add" class="btn" onclick="addToCart()">
                 Add to cart
               </button>
             </div>
@@ -142,12 +165,12 @@
     </div>
     <div class="footer mt-auto">
       <div
-        class="footer__links d-flex justify-content-center align-items-center"
+        class="footer__links d-flex flex-column flex-sm-row  justify-content-center align-items-center"
       >
         <a href="#t-shirt" class="footer-links">T-shirt</a>
-        <div class="line"></div>
+        <div class="line d-none d-sm-block"></div>
         <a href="#add-to-cart" class="footer-links">Add to cart</a>
-        <div class="line"></div>
+        <div class="line d-none d-sm-block"></div>
         <a href="#images" class="footer-links">Images</a>
       </div>
     </div>
